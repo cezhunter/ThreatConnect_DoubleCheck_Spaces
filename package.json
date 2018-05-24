@@ -1,5 +1,5 @@
 {
-  "name": "TC-DoubleCheck",
+  "name": "TC-DoubleCheck-Config-Manager",
   "version": "0.1.0",
   "scripts": {
     "ng": "ng",

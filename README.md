@@ -1,4 +1,4 @@
-# TC DoubleCheck
+# TC DoubleCheck Configuration Manager
 
 Spaces app to manage the configuration used by the TC DoubleCheck playbook.
 
@@ -44,7 +44,7 @@ ng generate component <COMPONENT_NAME>
 make pack
 ```
 
-This will package the app as `target/TCS_-_TC_Double_Check.tcx`.
+This will package the app as `target/TCS_-_TC_Double_Check_Config_Manager.tcx`.
 
 ## Build App in Development Mode (does not minify or uglify code, so it can be debugged in browser)
 
