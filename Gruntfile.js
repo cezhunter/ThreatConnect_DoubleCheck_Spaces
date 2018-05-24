@@ -4,7 +4,7 @@ var mkdirp = require('mkdirp');
 
 grunt.initConfig({
   app: {
-    name: 'TCS_-_TC_Double_Check',
+    name: 'TCS_-_TC_DoubleCheck_Config_Manager',
     version: '0.1.0'
   },
 

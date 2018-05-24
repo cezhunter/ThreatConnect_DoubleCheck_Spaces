@@ -9,6 +9,7 @@ import { MainComponent } from '../../main.component';
   providers: [MainComponent]
 })
 export class AddProfileComponent implements OnInit {
+    checkForDuplicateAttributes: boolean = false;
     requiredAttributes: string[] = [];
     desiredAttributes: string[] = [];
     requiredTags: string[] = [];
