@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MainComponent } from '../../main.component';
+
 @Component({
   selector: 'add-profile',
   templateUrl: './add-profile.component.html',
-  styleUrls: ['./add-profile.component.less']
+  styleUrls: ['./add-profile.component.less'],
+  providers: [MainComponent]
 })
 export class AddProfileComponent implements OnInit {
     requiredAttributes: string[] = [];
@@ -15,7 +18,9 @@ export class AddProfileComponent implements OnInit {
     requiredAssociations: string[] = [];
     desiredAssociations: string[] = [];
 
-    constructor() { }
+    constructor(
+        private main: MainComponent
+    ) { }
 
     ngOnInit() {
     }
@@ -26,5 +31,9 @@ export class AddProfileComponent implements OnInit {
         console.log(this.desiredAttributes);
         console.log(this.requiredTags);
         console.log(this.desiredTags);
+    }
+
+    viewExistingProfiles() {
+        this.main.goTo('')
     }
 }

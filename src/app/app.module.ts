@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 /* Routing */
 import { AppRoutingModule } from './app-routing.module';
 
@@ -56,8 +55,12 @@ import {
     TcOwnerService
     // Url
 } from 'threatconnect-ng';
+
 import { AddProfileComponent } from './components/add-profile/add-profile.component';
 import { StringArrayHandlerComponent } from './components/string-array-handler/string-array-handler.component';
+import { ViewProfilesComponent } from './components/view-profiles/view-profiles.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { DatastoreService } from './services/datastore.service';
 
 @NgModule({
     imports: [
@@ -89,8 +92,11 @@ import { StringArrayHandlerComponent } from './components/string-array-handler/s
         MainComponent,
         AddProfileComponent,
         StringArrayHandlerComponent,
+        ViewProfilesComponent,
+        EditProfileComponent,
     ],
     providers: [
+        DatastoreService,
         /* Bowser Service */
         BowserService,
         /* TC Service */
