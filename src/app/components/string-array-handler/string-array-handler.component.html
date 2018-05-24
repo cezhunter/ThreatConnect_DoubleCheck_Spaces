@@ -1,0 +1,18 @@
+{{ itemName | titlecase }}*: <input type="text" [(ngModel)]="newItem" placeholder="Enter a(n) {{ itemName }}...">
+
+<div *ngIf="optionalValue">
+    {{ itemName | titlecase }} Value: <input type="text" [(ngModel)]="itemValue" placeholder="Enter a value for this {{ itemName }}">
+    Treat Value of {{ itemName | titlecase }} as Regex: <input type="checkbox" [(ngModel)]="itemIsRegex">
+</div>
+
+<div *ngIf="optionalCount">
+    Number of Associations: <input type="text" [(ngModel)]="itemCount">
+</div>
+
+<button class="button" (click)="queueItem()" title="Save this item">Add</button>
+
+<ul>
+    <li *ngFor="let item of items">
+        {{ item }}
+    </li>
+</ul>
