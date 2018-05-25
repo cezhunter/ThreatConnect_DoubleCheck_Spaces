@@ -51,11 +51,14 @@ export class StringArrayHandlerComponent {
     }
 
     deleteItem(item) {
-        // TODO: this function does not work on attributes with only a type and no value
         for (var i = this.items.length - 1; i >= 0; i--) {
             if (typeof(this.items[i]) === 'object') {
                 if (this.items[i].type === item.type) {
-                    if (this.items[i].count) {
+                    if (!this.items[i].value && !this.items[i].count) {
+                        this.items.splice(i, 1);
+                        break;
+                    }
+                    else if (this.items[i].count) {
                         if (this.items[i].count === item.count) {
                             this.items.splice(i, 1);
                             break;

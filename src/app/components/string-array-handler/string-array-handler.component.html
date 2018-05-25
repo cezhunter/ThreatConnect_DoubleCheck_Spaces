@@ -14,14 +14,14 @@
 <ul>
     <li *ngFor="let item of items">
         <span *ngIf="item.type">
-            <span *ngIf="item.count !== -1">
+            <span *ngIf="item.count !== undefined && item.count !== -1">
                 {{ item.type }}: {{ item.count }}
             </span>
-            <div *ngIf="item.value !== '' && item.count === -1">
+            <span *ngIf="item.value !== undefined && item.value !== ''">
                 <!-- TODO: why is this not displaying the value correctly? -->
                 {{ item.type }}: {{ item.value }}
-            </div>
-            <span *ngIf="item.value === '' && item.count === -1">
+            </span>
+            <span *ngIf="item.value === '' || item.count === -1">
                 {{ item.type }}
             </span>
         </span>
