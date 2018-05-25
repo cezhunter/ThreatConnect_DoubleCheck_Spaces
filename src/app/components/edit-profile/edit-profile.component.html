@@ -1,1 +1,45 @@
-<display-profile></display-profile>
+Profile name: <input type="text" [(ngModel)]="profile.name" placeholder="Enter a name for this profile...">
+
+<h3>Attribute Config</h3>
+
+<label><input type="checkbox" [(ngModel)]="profile.settings.attributes.failOnDuplicates"> Check for duplicate attributes</label>
+
+<h4>Required Attributes</h4>
+
+<string-array-handler [itemName]="'required attribute'" [optionalValue]="true" [items]="profile.settings.attributes.required" (itemsEmitter)="profile.settings.attributes.required = $event"></string-array-handler>
+
+<h4>Desired Attributes</h4>
+
+<string-array-handler [itemName]="'desired attribute'" [optionalValue]="true" [items]="profile.settings.attributes.desired" (itemsEmitter)="profile.settings.attributes.desired = $event"></string-array-handler>
+
+<div>
+    <label><input type="checkbox"> Validate a minimum number of attributes is met</label>
+    <label><input type="number" [(ngModel)]="minAttributes" min="0" max="50"> Specify a minimum number of attributes to validate</label>
+</div>
+
+<div>
+    <label><input type="checkbox"> Validate a maximum number of attributes is met</label>
+    <label><input type="number" [(ngModel)]="minAttributes" min="1" max="50"> Specify a maximum number of attributes to validate</label>
+</div>
+
+<h3>Tag Config</h3>
+
+<h4>Required Tags</h4>
+
+<string-array-handler [itemName]="'required tag'" [items]="profile.settings.tags.required" (itemsEmitter)="profile.settings.tags.required = $event"></string-array-handler>
+
+<h4>Desired Tags</h4>
+
+<string-array-handler [itemName]="'desired tag'" [items]="profile.settings.tags.desired" (itemsEmitter)="profile.settings.tags.desired = $event"></string-array-handler>
+
+<h3>Association Config</h3>
+
+<string-array-handler [itemName]="'required association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.required" (itemsEmitter)="profile.settings.associations.required = $event"></string-array-handler>
+
+<string-array-handler [itemName]="'desired association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.desired" (itemsEmitter)="profile.settings.associations.desired = $event"></string-array-handler>
+
+
+<button class="button" *ngIf="action != 'create'">Save</button>
+<button class="button" *ngIf="action == 'create'">Create new profile</button>
+
+<button class="button secondary" (click)="viewExistingProfiles()">View existing profiles</button>

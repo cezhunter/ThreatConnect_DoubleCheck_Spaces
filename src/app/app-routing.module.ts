@@ -5,7 +5,6 @@ import {
 }
 from '@angular/router';
 import { MainComponent } from './main.component';
-import { NewProfileComponent } from './components/new-profile/new-profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { SpacesBaseService } from 'spaces-ng';
 
@@ -17,10 +16,6 @@ const routes: Routes = [{
     path: 'index.html',
     component: MainComponent,
     resolve: {base: SpacesBaseService},
-  }, {
-    path: 'new',
-    component: NewProfileComponent,
-    resolve: {base: SpacesBaseService}
   }, {
     path: 'edit',
     component: EditProfileComponent,

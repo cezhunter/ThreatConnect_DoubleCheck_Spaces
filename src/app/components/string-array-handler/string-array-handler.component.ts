@@ -9,7 +9,7 @@ import { SpacesMessagesService } from 'spaces-ng';
 })
 export class StringArrayHandlerComponent {
     newItem: string = '';
-    items: any[] = [];
+    @Input() items: any[];
     @Input() itemName: string;
     @Input() optionalValue: boolean = false;
     @Input() optionalCount: boolean = false;

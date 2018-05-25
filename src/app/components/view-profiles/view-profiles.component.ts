@@ -18,12 +18,40 @@ export class ViewProfilesComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        console.log("Data: ", this.datastore.get(''));
     }
 
     editProfile(item) {
         this.transfer.itemForEditing = item;
-        this.main.goTo('edit')
+        this.transfer.action = 'edit';
+        this.main.goTo('edit');
     }
 
+    createNewProfile() {
+        this.transfer.itemForEditing = this.createEmptyProfile();
+        this.transfer.action = 'create';
+        this.main.goTo('edit');
+    }
+
+    createEmptyProfile() {
+        return {
+            settings: {
+                attributes: {
+                    required: [],
+                    desired: [],
+                    failOnDuplicates: false,
+                    minNumberOfAttributes: 0,
+                    // TODO: what should be the default here?
+                    maxNumberOfAttributes: -1
+                },
+                associations: {
+                    required: [],
+                    desired: []
+                },
+                tags: {
+                    required: [],
+                    desired: []
+                }
+            }
+        }
+    }
 }

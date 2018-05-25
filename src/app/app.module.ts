@@ -61,8 +61,6 @@ import { ViewProfilesComponent } from './components/view-profiles/view-profiles.
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { DatastoreService } from './services/datastore.service';
 import { TransferService } from './services/transfer.service';
-import { DisplayProfileComponent } from './components/display-profile/display-profile.component';
-import { NewProfileComponent } from './components/new-profile/new-profile.component';
 
 @NgModule({
     imports: [
@@ -95,8 +93,6 @@ import { NewProfileComponent } from './components/new-profile/new-profile.compon
         StringArrayHandlerComponent,
         ViewProfilesComponent,
         EditProfileComponent,
-        DisplayProfileComponent,
-        NewProfileComponent,
     ],
     providers: [
         DatastoreService,

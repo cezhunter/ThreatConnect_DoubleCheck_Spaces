@@ -4,6 +4,8 @@
         'settings': []
     })">test</a>
     <li *ngFor="let item of datastore.items">
-        <a (click)="editProfile()">{{ item.name }}</a>
+        <a (click)="editProfile(item)">{{ item.name }}</a>
     </li>
 </ul>
+
+<button class="button" (click)="createNewProfile()">Create a new profile</button>
