@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MainComponent } from '../../main.component';
+import { Profile } from '../../entities';
 
 @Component({
   selector: 'add-profile',
@@ -18,6 +19,8 @@ export class AddProfileComponent implements OnInit {
     maxAttributes: number = 50;
     requiredAssociations: string[] = [];
     desiredAssociations: string[] = [];
+    profileName: string = '';
+    newProfile: Profile;
 
     constructor(
         private main: MainComponent
@@ -28,10 +31,6 @@ export class AddProfileComponent implements OnInit {
 
     saveProfile() {
         // TODO: add code to split up required/desired attributes which only have types from those with values
-        console.log(this.requiredAttributes);
-        console.log(this.desiredAttributes);
-        console.log(this.requiredTags);
-        console.log(this.desiredTags);
     }
 
     viewExistingProfiles() {
