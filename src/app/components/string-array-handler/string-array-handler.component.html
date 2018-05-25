@@ -6,13 +6,28 @@
 </div>
 
 <div *ngIf="optionalCount">
-    Number of Associations: <input type="text" [(ngModel)]="itemCount">
+    Number of Associations: <input type="number" [(ngModel)]="itemCount">
 </div>
 
 <button class="button secondary" (click)="queueItem()" title="Save this item">Add</button>
 
 <ul>
     <li *ngFor="let item of items">
-        {{ item }}
+        <span *ngIf="item.type">
+            <span *ngIf="item.count !== -1">
+                {{ item.type }}: {{ item.count }}
+            </span>
+            <div *ngIf="item.value !== '' && item.count === -1">
+                <!-- TODO: why is this not displaying the value correctly? -->
+                {{ item.type }}: {{ item.value }}
+            </div>
+            <span *ngIf="item.value === '' && item.count === -1">
+                {{ item.type }}
+            </span>
+        </span>
+        <span *ngIf="!item.type">
+            {{ item }}
+        </span>
+        <i class="fa fa-trash-o" (click)="deleteItem(item)"></i>
     </li>
 </ul>

@@ -14,7 +14,7 @@ export class StringArrayHandlerComponent {
     @Input() optionalValue: boolean = false;
     @Input() optionalCount: boolean = false;
     itemValue: string = '';
-    itemCount: number = 0;
+    itemCount: number = -1;
     itemIsRegex: boolean = false;
 
     constructor(
@@ -26,24 +26,53 @@ export class StringArrayHandlerComponent {
 
     queueItem() {
         if (this.newItem !== '') {
-            if (this.itemValue !== '') {
+            if (this.optionalValue) {
                 this.items.push({
                     type: this.newItem,
                     value: this.itemValue,
                     regex: this.itemIsRegex
                 });
+                this.itemValue = '';
             } else if (this.optionalCount) {
                 this.items.push({
                     type: this.newItem,
                     count: this.itemCount
                 });
+                this.itemCount = -1;
             } else {
                 this.items.push(this.newItem);
             }
             this.newItem = '';
+            // emit the list of items back to parent component
             this.itemsEmitter.emit(this.items);
         } else {
             this.messages.showError('No value', 'Please enter some text for the value of this item');
+        }
+    }
+
+    deleteItem(item) {
+        // TODO: this function does not work on attributes with only a type and no value
+        for (var i = this.items.length - 1; i >= 0; i--) {
+            if (typeof(this.items[i]) === 'object') {
+                if (this.items[i].type === item.type) {
+                    if (this.items[i].count) {
+                        if (this.items[i].count === item.count) {
+                            this.items.splice(i, 1);
+                            break;
+                        }
+                    } else if (this.items[i].value) {
+                        if (this.items[i].value === item.value) {
+                            this.items.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            } else {
+                if (this.items[i] === item) {
+                    this.items.splice(i, 1);
+                    break;
+                }
+            }
         }
     }
 }
