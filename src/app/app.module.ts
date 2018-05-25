@@ -61,6 +61,7 @@ import { StringArrayHandlerComponent } from './components/string-array-handler/s
 import { ViewProfilesComponent } from './components/view-profiles/view-profiles.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { DatastoreService } from './services/datastore.service';
+import { TransferService } from './services/transfer.service';
 
 @NgModule({
     imports: [
@@ -97,6 +98,7 @@ import { DatastoreService } from './services/datastore.service';
     ],
     providers: [
         DatastoreService,
+        TransferService,
         /* Bowser Service */
         BowserService,
         /* TC Service */

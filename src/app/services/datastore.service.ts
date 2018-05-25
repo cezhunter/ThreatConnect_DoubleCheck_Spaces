@@ -27,8 +27,8 @@ export class DatastoreService {
                 response => {
                     for (var i = response.hits.hits.length - 1; i >= 0; i--) {
                         this.items.push({
-                            'text': response.hits.hits[i]._source.text,
-                            'id': response.hits.hits[i]._id
+                            settings: response.hits.hits[i]._source.settings,
+                            name: response.hits.hits[i]._id
                         });
                     }
                 },
