@@ -18,7 +18,6 @@
                 {{ item.type }}: {{ item.count }}
             </span>
             <span *ngIf="item.value !== undefined && item.value !== ''">
-                <!-- TODO: why is this not displaying the value correctly? -->
                 {{ item.type }}: {{ item.value }}
             </span>
             <span *ngIf="item.value === '' || item.count === -1">

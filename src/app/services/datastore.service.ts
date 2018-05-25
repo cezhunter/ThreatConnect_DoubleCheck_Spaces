@@ -39,7 +39,7 @@ export class DatastoreService {
             );
     }
 
-    public save(searchCommand: string, body: string) {
+    public save(searchCommand: string, body: string, oldIndexName: string) {
         /*
          * Save an item to the datastore
          */
@@ -49,20 +49,17 @@ export class DatastoreService {
                 .subscribe(
                     response => {
                         // this.messages.showSuccess('Success', 'item saved');
-                        // if a item is being updated, simply update the item's text rather than adding a new item
-                        if (searchCommand !== '') {
-                            for (var i = this.items.length - 1; i >= 0; i--) {
-                                if (this.items[i].id === searchCommand) {
-                                    this.items[i].text = body;
-                                    break;
-                                }
+                        for (var i = this.items.length - 1; i >= 0; i--) {
+                            if (this.items[i].name === oldIndexName) {
+                                this.items.splice(i, 1);
+                                // I intentionally do not break out of this loop so that any duplicates will be removed
+                                // break;
                             }
-                        } else {
-                            this.items.push({
-                                'text': body,
-                                'id': response._id,
-                            });
                         }
+                        this.items.push({
+                            settings: body,
+                            name: searchCommand
+                        });
                     },
                     err => {
                         this.logging.error('Error', err);

@@ -18,16 +18,19 @@ export class ViewProfilesComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.datastore.get('');
     }
 
     editProfile(item) {
-        this.transfer.itemForEditing = item;
+        this.transfer.itemForEditing = item.settings;
+        this.transfer.itemName = item.name;
         this.transfer.action = 'edit';
         this.main.goTo('edit');
     }
 
     createNewProfile() {
         this.transfer.itemForEditing = this.createEmptyProfile();
+        this.transfer.itemName = '';
         this.transfer.action = 'create';
         this.main.goTo('edit');
     }
