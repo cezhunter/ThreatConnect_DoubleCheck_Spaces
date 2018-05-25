@@ -56,12 +56,13 @@ import {
     // Url
 } from 'threatconnect-ng';
 
-import { AddProfileComponent } from './components/add-profile/add-profile.component';
 import { StringArrayHandlerComponent } from './components/string-array-handler/string-array-handler.component';
 import { ViewProfilesComponent } from './components/view-profiles/view-profiles.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { DatastoreService } from './services/datastore.service';
 import { TransferService } from './services/transfer.service';
+import { DisplayProfileComponent } from './components/display-profile/display-profile.component';
+import { NewProfileComponent } from './components/new-profile/new-profile.component';
 
 @NgModule({
     imports: [
@@ -91,10 +92,11 @@ import { TransferService } from './services/transfer.service';
     declarations: [
         AppComponent,
         MainComponent,
-        AddProfileComponent,
         StringArrayHandlerComponent,
         ViewProfilesComponent,
         EditProfileComponent,
+        DisplayProfileComponent,
+        NewProfileComponent,
     ],
     providers: [
         DatastoreService,

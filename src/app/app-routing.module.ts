@@ -5,7 +5,7 @@ import {
 }
 from '@angular/router';
 import { MainComponent } from './main.component';
-import { AddProfileComponent } from './components/add-profile/add-profile.component';
+import { NewProfileComponent } from './components/new-profile/new-profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { SpacesBaseService } from 'spaces-ng';
 
@@ -19,7 +19,7 @@ const routes: Routes = [{
     resolve: {base: SpacesBaseService},
   }, {
     path: 'new',
-    component: AddProfileComponent,
+    component: NewProfileComponent,
     resolve: {base: SpacesBaseService}
   }, {
     path: 'edit',

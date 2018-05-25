@@ -4,12 +4,12 @@ import { MainComponent } from '../../main.component';
 import { Profile } from '../../entities';
 
 @Component({
-  selector: 'add-profile',
-  templateUrl: './add-profile.component.html',
-  styleUrls: ['./add-profile.component.less'],
+  selector: 'new-profile',
+  templateUrl: './new-profile.component.html',
+  styleUrls: ['./new-profile.component.less'],
   providers: [MainComponent]
 })
-export class AddProfileComponent implements OnInit {
+export class NewProfileComponent implements OnInit {
     checkForDuplicateAttributes: boolean = false;
     requiredAttributes: string[] = [];
     desiredAttributes: string[] = [];
@@ -36,4 +36,5 @@ export class AddProfileComponent implements OnInit {
     viewExistingProfiles() {
         this.main.goTo('')
     }
+
 }
