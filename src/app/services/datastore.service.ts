@@ -45,45 +45,47 @@ export class DatastoreService {
          */
         let jsonifiedBody = JSON.parse('{"text": "' + body + '"}');
 
+        // delete the old entry from the datastore
+        for (var i = this.items.length - 1; i >= 0; i--) {
+            if (this.items[i].name === oldIndexName) {
+                this.delete(this.items[i].name);
+                // I intentionally do not break out of this loop so that any duplicates will be removed
+                // break;
+            }
+        }
+
         this.exchangeDB.create(this.domain, this.typeName, searchCommand, jsonifiedBody)
-                .subscribe(
-                    response => {
-                        // this.messages.showSuccess('Success', 'item saved');
-                        for (var i = this.items.length - 1; i >= 0; i--) {
-                            if (this.items[i].name === oldIndexName) {
-                                this.items.splice(i, 1);
-                                // I intentionally do not break out of this loop so that any duplicates will be removed
-                                // break;
-                            }
-                        }
-                        this.items.push({
-                            settings: body,
-                            name: searchCommand
-                        });
-                    },
-                    err => {
-                        this.logging.error('Error', err);
-                        this.messages.showError('Failed', 'Unable to save item: ' + err);
-                    }
-                );
+            .subscribe(
+                response => {
+                    // this.messages.showSuccess('Success', 'item saved');
+                    this.items.push({
+                        settings: body,
+                        name: searchCommand
+                    });
+                },
+                err => {
+                    this.logging.error('Error', err);
+                    this.messages.showError('Failed', 'Unable to save item: ' + err);
+                }
+            );
     }
 
     public delete(itemId: string) {
         this.exchangeDB.delete(this.domain, this.typeName, itemId)
-                .subscribe(
-                    response => {
-                        for (var i = this.items.length - 1; i >= 0; i--) {
-                            // remove the item from the list of items
-                            if (this.items[i].id === itemId) {
-                                this.items.splice(i, 1);
-                                break;
-                            }
+            .subscribe(
+                response => {
+                    for (var i = this.items.length - 1; i >= 0; i--) {
+                        // remove the item from the list of items
+                        if (this.items[i].name === itemId) {
+                            this.items.splice(i, 1);
+                            break;
                         }
-                    },
-                    err => {
-                        this.logging.error('Error', err);
-                        this.messages.showError('Failed', 'Unable to delete item: ' + err);
                     }
-                );
+                },
+                err => {
+                    this.logging.error('Error', err);
+                    this.messages.showError('Failed', 'Unable to delete item: ' + err);
+                }
+            );
     }
 }
