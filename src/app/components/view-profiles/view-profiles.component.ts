@@ -40,8 +40,7 @@ export class ViewProfilesComponent implements OnInit {
                     required: [],
                     desired: [],
                     failOnDuplicates: false,
-                    minNumberOfAttributes: 0,
-                    // TODO: what should be the default here?
+                    minNumberOfAttributes: -1,
                     maxNumberOfAttributes: -1
                 },
                 associations: {
