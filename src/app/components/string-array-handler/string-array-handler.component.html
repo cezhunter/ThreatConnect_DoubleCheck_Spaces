@@ -6,7 +6,7 @@
 </div>
 
 <div *ngIf="optionalCount">
-    Number of Associations: <input type="number" [(ngModel)]="itemCount">
+    Number of Associations: <input type="number" [(ngModel)]="itemCount" min="-1" max="20">
 </div>
 
 <button class="button secondary" (click)="queueItem()" title="Save this item">Add</button>

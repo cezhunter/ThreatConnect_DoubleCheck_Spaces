@@ -15,22 +15,20 @@ export class ViewProfilesComponent implements OnInit {
         public datastore: DatastoreService,
         private main: MainComponent,
         private transfer: TransferService
-    ) { }
-
-    ngOnInit() {
+    ) {
         this.datastore.get('');
     }
 
+    ngOnInit() {}
+
     editProfile(item) {
-        this.transfer.itemForEditing = item.settings;
-        this.transfer.itemName = item.name;
+        this.transfer.itemForEditing = item;
         this.transfer.action = 'edit';
         this.main.goTo('edit');
     }
 
     createNewProfile() {
         this.transfer.itemForEditing = this.createEmptyProfile();
-        this.transfer.itemName = '';
         this.transfer.action = 'create';
         this.main.goTo('edit');
     }
@@ -54,7 +52,8 @@ export class ViewProfilesComponent implements OnInit {
                     required: [],
                     desired: []
                 }
-            }
+            },
+            name: ''
         }
     }
 }

@@ -24,9 +24,9 @@ export class EditProfileComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.profile = this.transfer.itemForEditing;
-        this.profileName = this.transfer.itemName;
-        this.originalProfileName = this.transfer.itemName;
+        this.profile = JSON.parse(this.transfer.itemForEditing);
+        this.profileName = this.transfer.itemForEditing.name;
+        this.originalProfileName = this.transfer.itemForEditing.name;
         this.action = this.transfer.action;
     }
 

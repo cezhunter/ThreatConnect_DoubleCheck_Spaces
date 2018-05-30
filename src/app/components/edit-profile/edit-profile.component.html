@@ -14,12 +14,12 @@ Profile name: <input type="text" [(ngModel)]="profile.name" placeholder="Enter a
 
 <div>
     <label><input type="checkbox"> Validate a minimum number of attributes is met</label>
-    <label><input type="number" [(ngModel)]="minAttributes" min="0" max="50"> Specify a minimum number of attributes to validate</label>
+    <label><input type="number" [(ngModel)]="profile.settings.attributes.minNumberOfAttributes" min="0" max="50"> Specify a minimum number of attributes to validate</label>
 </div>
 
 <div>
     <label><input type="checkbox"> Validate a maximum number of attributes is met</label>
-    <label><input type="number" [(ngModel)]="minAttributes" min="1" max="50"> Specify a maximum number of attributes to validate</label>
+    <label><input type="number" [(ngModel)]="profile.settings.attributes.maxNumberOfAttributes" min="1" max="50"> Specify a maximum number of attributes to validate</label>
 </div>
 
 <h3>Tag Config</h3>
