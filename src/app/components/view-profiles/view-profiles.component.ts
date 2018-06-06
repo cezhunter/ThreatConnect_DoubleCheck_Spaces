@@ -19,7 +19,10 @@ export class ViewProfilesComponent implements OnInit {
         this.datastore.get('');
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        // this clears the profiles so that duplicates are not shown
+        this.datastore.items = [];
+    }
 
     editProfile(item) {
         this.transfer.itemForEditing = item;
@@ -37,22 +40,19 @@ export class ViewProfilesComponent implements OnInit {
         return {
             settings: {
                 attributes: {
-                    required: [],
-                    desired: [],
+                    chosen: {},
                     failOnDuplicates: false,
                     minNumberOfAttributes: -1,
                     maxNumberOfAttributes: -1
                 },
                 associations: {
-                    required: [],
-                    desired: []
+                    chosen: {}
                 },
                 tags: {
                     required: [],
                     desired: []
                 }
-            },
-            name: ''
+            }
         }
     }
 }

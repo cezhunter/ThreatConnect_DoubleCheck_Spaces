@@ -1,7 +1,8 @@
 export interface Attribute {
+    regex: boolean,
+    required: boolean,
     type: string,
-    value: string,
-    regex: boolean
+    value: string
 }
 
 export interface Association {

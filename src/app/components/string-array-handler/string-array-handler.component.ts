@@ -36,7 +36,7 @@ export class StringArrayHandlerComponent {
             } else if (this.optionalCount) {
                 this.items.push({
                     type: this.newItem,
-                    count: this.itemCount
+                    num: this.itemCount
                 });
                 this.itemCount = -1;
             } else {
@@ -54,12 +54,12 @@ export class StringArrayHandlerComponent {
         for (var i = this.items.length - 1; i >= 0; i--) {
             if (typeof(this.items[i]) === 'object') {
                 if (this.items[i].type === item.type) {
-                    if (!this.items[i].value && !this.items[i].count) {
+                    if (!this.items[i].value && !this.items[i].num) {
                         this.items.splice(i, 1);
                         break;
                     }
-                    else if (this.items[i].count) {
-                        if (this.items[i].count === item.count) {
+                    else if (this.items[i].num) {
+                        if (this.items[i].num === item.num) {
                             this.items.splice(i, 1);
                             break;
                         }
