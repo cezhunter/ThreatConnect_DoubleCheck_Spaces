@@ -16,6 +16,7 @@ import {Message} from 'primeng/api';
 
 @Component({
     templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
     selector: 'tc-app'
 })
 export class AppComponent {

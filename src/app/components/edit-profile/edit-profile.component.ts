@@ -5,6 +5,8 @@ import { MainComponent } from '../../main.component';
 import { Profile } from '../../entities';
 import { DatastoreService } from '../../services/datastore.service';
 
+declare var $:any;
+
 @Component({
   selector: 'edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -23,6 +25,7 @@ export class EditProfileComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        $(document).foundation();
         this.profile = this.transfer.itemForEditing;
         this.originalProfileName = this.profile.name;
         this.action = this.transfer.action;

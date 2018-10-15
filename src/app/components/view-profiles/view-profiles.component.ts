@@ -7,7 +7,7 @@ import { TransferService } from '../../services/transfer.service';
 @Component({
   selector: 'view-profiles',
   templateUrl: './view-profiles.component.html',
-  styleUrls: ['./view-profiles.component.less'],
+  styleUrls: ['./view-profiles.component.css'],
   providers: [MainComponent]
 })
 export class ViewProfilesComponent implements OnInit {

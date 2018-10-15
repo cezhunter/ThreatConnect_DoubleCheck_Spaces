@@ -1,48 +1,117 @@
-Profile name: <input type="text" [(ngModel)]="profile.name" placeholder="Enter a name for this profile...">
+<div class="row">
+    <h1 *ngIf="action != 'create'">Edit Profile</h1>
+    <h1 *ngIf="action == 'create'">New Profile</h1>
 
-<h3>Attribute Config</h3>
+    <div class="large-7 medium-8">
+        Profile name: <input type="text" [(ngModel)]="profile.name" placeholder="Enter a name for this profile...">
+    </div>
 
-<label>Check for duplicate attributes</label>
-<select id="title" name="title" [(ngModel)]="profile.settings.attributes.actionOnDuplicates">
- <option value="" selected>none</option>
- <option value="fail">fail</option>
- <option value="warn">warn</option>
-</select>
+    <div class="configSection">
+        <div class="reveal" id="associationDocsModal" data-reveal>
+          <h1>Configuring Associations</h1>
+          <p>This section allows you to specify required/desired associations. You do this by providing a <b>group/indicator type</b> and (optionally) the <b>number of associations</b>.</p>
 
-<h4>Required Attributes</h4>
+          <h3>Specifying a Number of Associations</h3>
+          <p>Here is a helpful guide for specifying the number of associations:</p>
+          <table>
+              <tr>
+                  <th>Number of Associations</th>
+                  <th>Meaning</th>
+              </tr>
+              <tr>
+                  <td>-1</td>
+                  <td>Validate there is <b>at least one</b> of the group/indicator type associated</td>
+              </tr>
+              <tr>
+                  <td>0</td>
+                  <td>Validate there are <b>none</b> of the group/indicator type associated</td>
+              </tr>
+              <tr>
+                  <td>1 or more</td>
+                  <td>Validate there is <b>a specific number</b> of the group/indicator type associated</td>
+              </tr>
+          </table>
 
-<string-array-handler [itemName]="'required attribute'" [optionalValue]="true" [items]="profile.settings.attributes.required" (itemsEmitter)="profile.settings.attributes.required = $event"></string-array-handler>
+          <h3>Examples</h3>
+          <ul>
+              <li>If you would like to validate that there is <b>at least one</b> of a group/indicator type associated with an item, provide the group/indicator type and leave the number of associations at <b>-1</b>.</li>
+              <li>If you would like to validate that <b>none</b> of a group/indicator type are associated with an item, provide the group/indicator type and set the number of associations to <b>zero</b>.</li>
+              <li>If you would like to validate that <b>a specific number</b> of a group/indicator type is associated with an item, provide the group/indicator type and set the number of associations to the number of associations you would like to have.</li>
+          </ul>
+        </div>
 
-<h4>Desired Attributes</h4>
+        <h2>Association Config <sup><a data-open="associationDocsModal"><i class="fa fa-question"></i></a></sup></h2>
 
-<string-array-handler [itemName]="'desired attribute'" [optionalValue]="true" [items]="profile.settings.attributes.desired" (itemsEmitter)="profile.settings.attributes.desired = $event"></string-array-handler>
+        <div class="large-7 medium-8 float-center">
+            <h3>Required Associations</h3>
+            <string-array-handler [itemName]="'required association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.required" (itemsEmitter)="profile.settings.associations.required = $event"></string-array-handler>
 
-<div>
-    <label><input type="checkbox"> Validate a minimum number of attributes is met</label>
-    <label><input type="number" [(ngModel)]="profile.settings.attributes.minNumberOfAttributes" min="0" max="50"> Specify a minimum number of attributes to validate</label>
+            <h3>Desired Associations</h3>
+            <string-array-handler [itemName]="'desired association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.desired" (itemsEmitter)="profile.settings.associations.desired = $event"></string-array-handler>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="configSection">
+        <div class="reveal" id="attributeDocsModal" data-reveal>
+          <h1>Configuring Attributes</h1>
+          <p>This section allows you to specify required/desired attributes. You do this by providing an <b>attribute type</b> and (optionally) an <b>attribute value</b>. You can also treat the attribute value as a <b>regex</b>.</p>
+
+          <h3>Additional Attribute Configurations</h3>
+          <p>You can also check for the following criteria regarding attributes:</p>
+          <ul>
+              <li><b>Action is duplicate attributes:</b> This allows you to return a failure or warning if there are duplicate attributes.</li>
+              <li><b>Min. number of attributes:</b> This allows you to specify the minimum number of attributes on an item. This will ignore the type of the attribute; it only looks at the number of attributes.</li>
+              <li><b>Max. number of attributes:</b> This allows you to specify the maximum number of attributes on an item. This will ignore the type of the attribute; it only looks at the number of attributes.</li>
+          </ul>
+        </div>
+
+        <h2>Attribute Config <sup><a data-open="attributeDocsModal"><i class="fa fa-question"></i></a></sup></h2>
+
+        <div class="large-7 medium-8 float-center">
+            <h3>Required Attributes</h3>
+            <string-array-handler [itemName]="'required attribute'" [optionalValue]="true" [items]="profile.settings.attributes.required" (itemsEmitter)="profile.settings.attributes.required = $event"></string-array-handler>
+
+            <h3>Desired Attributes</h3>
+            <string-array-handler [itemName]="'desired attribute'" [optionalValue]="true" [items]="profile.settings.attributes.desired" (itemsEmitter)="profile.settings.attributes.desired = $event"></string-array-handler>
+
+            <h3>Misc. Configurations</h3>
+            <label>Action if duplicate attributes:</label>
+            <select id="title" name="title" [(ngModel)]="profile.settings.attributes.actionOnDuplicates">
+             <option value="" selected>none</option>
+             <option value="fail">fail</option>
+             <option value="warn">warn</option>
+            </select>
+
+            <label><input type="checkbox"> Validate a minimum number of attributes is met</label>
+            <label><input type="number" [(ngModel)]="profile.settings.attributes.minNumberOfAttributes" min="0" max="50"> Specify a minimum number of attributes to validate</label>
+
+            <label><input type="checkbox"> Validate a maximum number of attributes is met</label>
+            <label><input type="number" [(ngModel)]="profile.settings.attributes.maxNumberOfAttributes" min="1" max="50"> Specify a maximum number of attributes to validate</label>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="configSection">
+        <div class="reveal" id="tagDocsModal" data-reveal>
+          <h1>Configuring Tags</h1>
+          <p>This section allows you to specify required/desired tags. You do this by providing a <b>tag name</b>.</p>
+        </div>
+
+        <h2>Tag Config <sup><a data-open="tagDocsModal"><i class="fa fa-question"></i></a></sup></h2>
+
+        <div class="large-7 medium-8 float-center">
+            <h3>Required Tags</h3>
+            <string-array-handler [itemName]="'required tag'" [items]="profile.settings.tags.required" (itemsEmitter)="profile.settings.tags.required = $event"></string-array-handler>
+
+            <h3>Desired Tags</h3>
+            <string-array-handler [itemName]="'desired tag'" [items]="profile.settings.tags.desired" (itemsEmitter)="profile.settings.tags.desired = $event"></string-array-handler>
+        </div>
+    </div>
+
+    <button class="button secondary" (click)="viewExistingProfiles()">< View existing profiles</button>
+    <button class="button" *ngIf="action != 'create'" (click)="saveProfile()">Save</button>
+    <button class="button" *ngIf="action == 'create'" (click)="saveProfile()">Create new profile</button>
 </div>
-
-<div>
-    <label><input type="checkbox"> Validate a maximum number of attributes is met</label>
-    <label><input type="number" [(ngModel)]="profile.settings.attributes.maxNumberOfAttributes" min="1" max="50"> Specify a maximum number of attributes to validate</label>
-</div>
-
-<h3>Tag Config</h3>
-
-<h4>Required Tags</h4>
-
-<string-array-handler [itemName]="'required tag'" [items]="profile.settings.tags.required" (itemsEmitter)="profile.settings.tags.required = $event"></string-array-handler>
-
-<h4>Desired Tags</h4>
-
-<string-array-handler [itemName]="'desired tag'" [items]="profile.settings.tags.desired" (itemsEmitter)="profile.settings.tags.desired = $event"></string-array-handler>
-
-<h3>Association Config</h3>
-
-<string-array-handler [itemName]="'required association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.required" (itemsEmitter)="profile.settings.associations.required = $event"></string-array-handler>
-
-<string-array-handler [itemName]="'desired association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.desired" (itemsEmitter)="profile.settings.associations.desired = $event"></string-array-handler>
-
-<button class="button secondary" (click)="viewExistingProfiles()">< View existing profiles</button>
-<button class="button" *ngIf="action != 'create'" (click)="saveProfile()">Save</button>
-<button class="button" *ngIf="action == 'create'" (click)="saveProfile()">Create new profile</button>
