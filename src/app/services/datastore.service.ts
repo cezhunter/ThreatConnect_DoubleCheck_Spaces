@@ -27,8 +27,9 @@ export class DatastoreService {
             .subscribe(
                 response => {
                     for (var i = response.hits.hits.length - 1; i >= 0; i--) {
+                        const profileJson = JSON.parse(response.hits.hits[i]._source.text).settings;
                         this.items.push({
-                            settings: response.hits.hits[i]._source.settings,
+                            settings: profileJson,
                             name: response.hits.hits[i]._id
                         });
                     }
@@ -44,14 +45,15 @@ export class DatastoreService {
         /*
          * Save an item to the datastore
          */
-        let jsonifiedBody = JSON.parse('{"text": "' + body + '"}');
+        let jsonifiedBody = JSON.stringify({
+            text: body
+        });
 
         // delete the old entry from the datastore
         for (var i = this.items.length - 1; i >= 0; i--) {
             if (this.items[i].name === oldIndexName) {
                 this.delete(this.items[i].name);
                 // I intentionally do not break out of this loop so that any duplicates will be removed
-                // break;
             }
         }
 
@@ -63,6 +65,7 @@ export class DatastoreService {
                         settings: body,
                         name: searchCommand
                     });
+                    this.messages.showSuccess('Success', 'Profile saved!');
                 },
                 err => {
                     this.logging.error('Error', err);

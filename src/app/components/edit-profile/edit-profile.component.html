@@ -43,7 +43,6 @@ Profile name: <input type="text" [(ngModel)]="profile.name" placeholder="Enter a
 
 <string-array-handler [itemName]="'desired association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.desired" (itemsEmitter)="profile.settings.associations.desired = $event"></string-array-handler>
 
+<button class="button secondary" (click)="viewExistingProfiles()">< View existing profiles</button>
 <button class="button" *ngIf="action != 'create'" (click)="saveProfile()">Save</button>
 <button class="button" *ngIf="action == 'create'" (click)="saveProfile()">Create new profile</button>
-
-<button class="button secondary" (click)="viewExistingProfiles()">< View existing profiles</button>

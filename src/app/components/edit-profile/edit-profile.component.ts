@@ -13,7 +13,6 @@ import { DatastoreService } from '../../services/datastore.service';
 })
 export class EditProfileComponent implements OnInit {
     profile: any;
-    profileName: string;
     originalProfileName: string;
     action: string;
 
@@ -25,13 +24,12 @@ export class EditProfileComponent implements OnInit {
 
     ngOnInit() {
         this.profile = this.transfer.itemForEditing;
-        this.profileName = this.transfer.itemForEditing.name;
-        this.originalProfileName = this.transfer.itemForEditing.name;
+        this.originalProfileName = this.profile.name;
         this.action = this.transfer.action;
     }
 
     saveProfile() {
-        this.datastore.save(this.profileName, this.profile, this.originalProfileName);
+        this.datastore.save(this.profile.name, JSON.stringify(this.profile), this.originalProfileName);
     }
 
     viewExistingProfiles() {
