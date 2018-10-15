@@ -1,8 +1,4 @@
 <ul>
-    <a (click)="editProfile({
-        'name': 'test',
-        'settings': []
-    })">test</a>
     <li *ngFor="let item of datastore.items">
         <a (click)="editProfile(item)">{{ item.name }}</a>
     </li>

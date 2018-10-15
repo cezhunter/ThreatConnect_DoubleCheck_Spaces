@@ -38,21 +38,26 @@ export class ViewProfilesComponent implements OnInit {
 
     createEmptyProfile() {
         return {
-            settings: {
-                attributes: {
-                    chosen: {},
-                    failOnDuplicates: false,
+            settings:
+            {
+                attributes:
+                {
+                    required: [],
+                    desired: [],
+                    actionOnDuplicates: "fail",
                     minNumberOfAttributes: -1,
                     maxNumberOfAttributes: -1
                 },
-                associations: {
-                    chosen: {}
+                associations:{
+                    required: [],
+                    desired:[]
                 },
-                tags: {
+                tags:
+                {
                     required: [],
                     desired: []
                 }
             }
-        }
+        };
     }
 }

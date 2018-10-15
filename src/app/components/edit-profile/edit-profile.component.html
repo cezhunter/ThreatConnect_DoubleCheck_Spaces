@@ -2,7 +2,12 @@ Profile name: <input type="text" [(ngModel)]="profile.name" placeholder="Enter a
 
 <h3>Attribute Config</h3>
 
-<label><input type="checkbox" [(ngModel)]="profile.settings.attributes.failOnDuplicates"> Check for duplicate attributes</label>
+<label>Check for duplicate attributes</label>
+<select id="title" name="title" [(ngModel)]="profile.settings.attributes.actionOnDuplicates">
+ <option value="" selected>none</option>
+ <option value="fail">fail</option>
+ <option value="warn">warn</option>
+</select>
 
 <h4>Required Attributes</h4>
 

@@ -22,6 +22,7 @@ export class DatastoreService {
         /*
          * Get the items from the datastore
          */
+        // TODO: this needs to get more than 10 results (it will currently only return 10 results)
         this.exchangeDB.read(this.domain, this.typeName, searchCommand)
             .subscribe(
                 response => {
