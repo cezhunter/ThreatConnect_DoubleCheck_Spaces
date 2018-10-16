@@ -1,3 +1,12 @@
 .section:hover {
     background-color: #eee;
 }
+
+.accordion-item {
+    border: 0.5px solid #333;
+}
+
+.accordion-title {
+    background-color: #333;
+    color: white;
+}
