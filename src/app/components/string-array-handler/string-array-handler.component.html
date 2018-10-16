@@ -1,12 +1,18 @@
-{{ itemName | titlecase }}*: <input type="text" [(ngModel)]="newItem" placeholder="Enter a(n) {{ itemName }}...">
+{{ itemName | titlecase }}*: <input type="text" [(ngModel)]="newItem" placeholder="Enter a {{ itemName }}...">
 
 <div *ngIf="optionalValue">
     {{ itemName | titlecase }} Value: <input type="text" [(ngModel)]="itemValue" placeholder="Enter a value for this {{ itemName }}">
-    Treat Value of {{ itemName | titlecase }} as Regex: <input type="checkbox" [(ngModel)]="itemIsRegex">
+    <label>Treat Value of {{ itemName | titlecase }} as Regex: <input type="checkbox" [(ngModel)]="itemIsRegex"></label>
 </div>
 
-<div *ngIf="optionalCount">
+<div *ngIf="optionalCount" class="large-5 medium-6">
     Number of Associations: <input type="number" [(ngModel)]="itemCount" min="-1" max="20">
+</div>
+
+<div *ngIf="optionalCount" style="font-size: 0.75em; margin-top: -1em;">
+    <span *ngIf="itemCount == -1" ><i>Check for <b>at least one</b> of the given group/indicator type associated</i></span>
+    <span *ngIf="itemCount >= 0"><i>Check for <b>exactly {{ itemCount }}</b> associated groups/indicators of the given type</i></span>
+    <br><br>
 </div>
 
 <button class="button secondary" (click)="queueItem()" title="Save this item">Add</button>

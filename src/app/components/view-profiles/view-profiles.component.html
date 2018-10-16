@@ -1,6 +1,6 @@
 <ul>
     <li *ngFor="let item of datastore.items">
-        <a (click)="editProfile(item)">{{ item.name }}</a>
+        <a (click)="editProfile(item)">{{ item.name }}</a> &nbsp;<i class="fa fa-trash-o" (click)="deleteProfile(item.name)"></i>
     </li>
 </ul>
 

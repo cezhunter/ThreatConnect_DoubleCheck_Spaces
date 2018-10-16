@@ -3,7 +3,7 @@
     <h1 *ngIf="action == 'create'">New Profile</h1>
 
     <div class="large-7 medium-8">
-        Profile name: <input type="text" [(ngModel)]="profile.name" placeholder="Enter a name for this profile...">
+        Profile name: <input id="profileName" type="text" [(ngModel)]="profile.name" placeholder="Enter a name for this profile...">
     </div>
 
     <div class="configSection">
@@ -43,11 +43,15 @@
         <h2>Association Config <sup><a data-open="associationDocsModal"><i class="fa fa-question"></i></a></sup></h2>
 
         <div class="large-7 medium-8 float-center">
-            <h3>Required Associations</h3>
-            <string-array-handler [itemName]="'required association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.required" (itemsEmitter)="profile.settings.associations.required = $event"></string-array-handler>
+            <div class="section">
+              <h3>Required Associations</h3>
+              <string-array-handler [itemName]="'required association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.required" (itemsEmitter)="profile.settings.associations.required = $event"></string-array-handler>
+            </div>
 
-            <h3>Desired Associations</h3>
-            <string-array-handler [itemName]="'desired association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.desired" (itemsEmitter)="profile.settings.associations.desired = $event"></string-array-handler>
+            <div class="section">
+              <h3>Desired Associations</h3>
+              <string-array-handler [itemName]="'desired association (Group/Indicator Type)'" [optionalCount]="true" [items]="profile.settings.associations.desired" (itemsEmitter)="profile.settings.associations.desired = $event"></string-array-handler>
+            </div>
         </div>
     </div>
 
@@ -56,6 +60,7 @@
     <div class="configSection">
         <div class="reveal" id="attributeDocsModal" data-reveal>
           <h1>Configuring Attributes</h1>
+          <h3>Required/Desired Attributes</h3>
           <p>This section allows you to specify required/desired attributes. You do this by providing an <b>attribute type</b> and (optionally) an <b>attribute value</b>. You can also treat the attribute value as a <b>regex</b>.</p>
 
           <h3>Additional Attribute Configurations</h3>
@@ -70,25 +75,29 @@
         <h2>Attribute Config <sup><a data-open="attributeDocsModal"><i class="fa fa-question"></i></a></sup></h2>
 
         <div class="large-7 medium-8 float-center">
-            <h3>Required Attributes</h3>
-            <string-array-handler [itemName]="'required attribute'" [optionalValue]="true" [items]="profile.settings.attributes.required" (itemsEmitter)="profile.settings.attributes.required = $event"></string-array-handler>
+            <div class="section">
+              <h3>Required Attributes</h3>
+              <string-array-handler [itemName]="'required attribute type'" [optionalValue]="true" [items]="profile.settings.attributes.required" (itemsEmitter)="profile.settings.attributes.required = $event"></string-array-handler>
+            </div>
 
-            <h3>Desired Attributes</h3>
-            <string-array-handler [itemName]="'desired attribute'" [optionalValue]="true" [items]="profile.settings.attributes.desired" (itemsEmitter)="profile.settings.attributes.desired = $event"></string-array-handler>
+            <div class="section">
+              <h3>Desired Attributes</h3>
+              <string-array-handler [itemName]="'desired attribute type'" [optionalValue]="true" [items]="profile.settings.attributes.desired" (itemsEmitter)="profile.settings.attributes.desired = $event"></string-array-handler>
+            </div>
 
-            <h3>Misc. Configurations</h3>
-            <label>Action if duplicate attributes:</label>
-            <select id="title" name="title" [(ngModel)]="profile.settings.attributes.actionOnDuplicates">
-             <option value="" selected>none</option>
-             <option value="fail">fail</option>
-             <option value="warn">warn</option>
-            </select>
+            <div class="section">
+              <h3>Misc. Configurations</h3>
+              <label>Action if duplicate attributes:</label>
+              <select id="title" name="title" [(ngModel)]="profile.settings.attributes.actionOnDuplicates">
+               <option value="" selected>none</option>
+               <option value="fail">fail</option>
+               <option value="warn">warn</option>
+              </select>
 
-            <label><input type="checkbox"> Validate a minimum number of attributes is met</label>
-            <label><input type="number" [(ngModel)]="profile.settings.attributes.minNumberOfAttributes" min="0" max="50"> Specify a minimum number of attributes to validate</label>
+              <label><input type="number" [(ngModel)]="profile.settings.attributes.minNumberOfAttributes" min="0" max="50"> Specify a minimum number of attributes to validate</label>
 
-            <label><input type="checkbox"> Validate a maximum number of attributes is met</label>
-            <label><input type="number" [(ngModel)]="profile.settings.attributes.maxNumberOfAttributes" min="1" max="50"> Specify a maximum number of attributes to validate</label>
+              <label><input type="number" [(ngModel)]="profile.settings.attributes.maxNumberOfAttributes" min="1" max="50"> Specify a maximum number of attributes to validate</label>
+            </div>
         </div>
     </div>
 
@@ -103,11 +112,15 @@
         <h2>Tag Config <sup><a data-open="tagDocsModal"><i class="fa fa-question"></i></a></sup></h2>
 
         <div class="large-7 medium-8 float-center">
-            <h3>Required Tags</h3>
-            <string-array-handler [itemName]="'required tag'" [items]="profile.settings.tags.required" (itemsEmitter)="profile.settings.tags.required = $event"></string-array-handler>
+            <div class="section">
+              <h3>Required Tags</h3>
+              <string-array-handler [itemName]="'required tag'" [items]="profile.settings.tags.required" (itemsEmitter)="profile.settings.tags.required = $event"></string-array-handler>
+            </div>
 
-            <h3>Desired Tags</h3>
-            <string-array-handler [itemName]="'desired tag'" [items]="profile.settings.tags.desired" (itemsEmitter)="profile.settings.tags.desired = $event"></string-array-handler>
+            <div class="section">
+              <h3>Desired Tags</h3>
+              <string-array-handler [itemName]="'desired tag'" [items]="profile.settings.tags.desired" (itemsEmitter)="profile.settings.tags.desired = $event"></string-array-handler>
+            </div>
         </div>
     </div>
 

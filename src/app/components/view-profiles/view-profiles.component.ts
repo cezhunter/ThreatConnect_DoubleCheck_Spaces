@@ -60,4 +60,13 @@ export class ViewProfilesComponent implements OnInit {
             }
         };
     }
+
+    deleteProfile(profileName: string) {
+        let confirmation = confirm("Are you sure you want to delete the " + profileName + " profile?");
+        if (confirmation) {
+            this.datastore.delete(profileName);
+        } else {
+            return;
+        }
+    }
 }

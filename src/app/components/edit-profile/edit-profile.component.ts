@@ -10,7 +10,7 @@ declare var $:any;
 @Component({
   selector: 'edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.less'],
+  styleUrls: ['./edit-profile.component.css'],
   providers: [MainComponent]
 })
 export class EditProfileComponent implements OnInit {
@@ -26,6 +26,7 @@ export class EditProfileComponent implements OnInit {
 
     ngOnInit() {
         $(document).foundation();
+        $('#profileName').focus();
         this.profile = this.transfer.itemForEditing;
         this.originalProfileName = this.profile.name;
         this.action = this.transfer.action;

@@ -46,7 +46,7 @@ export class StringArrayHandlerComponent {
             // emit the list of items back to parent component
             this.itemsEmitter.emit(this.items);
         } else {
-            this.messages.showError('No value', 'Please enter some text for the value of this item');
+            this.messages.showError('No value', 'Please enter a type/name for this item');
         }
     }
 
